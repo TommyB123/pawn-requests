@@ -43,6 +43,7 @@ native Request:Request(
 );
 
 // RequestJSON performs a request to send or receive JSON data
+#if !defined _json_included
 native Request:RequestJSON(
     RequestsClient:id,
     const path[],
@@ -51,6 +52,7 @@ native Request:RequestJSON(
     Node:json = Node:-1,
     Headers:headers = Headers:-1
 );
+#endif
 
 // WebSocketClient creates a websocket client and establishes a connection at
 // specified address. Received messages are sent to the callback which must have
@@ -67,6 +69,7 @@ native JsonWebSocketSend(JsonWebSocket:ws, Node:node);
 // JSON API
 // -
 
+#if !defined _json_included
 enum JSON_NODE {
     JSON_NODE_NUMBER,
     JSON_NODE_BOOLEAN,
@@ -238,6 +241,7 @@ stock operator~(const Node:nodes[], len) {
         JsonCleanup(nodes[i], true);
     }
 }
+#endif
 
 // -
 // Helpers
